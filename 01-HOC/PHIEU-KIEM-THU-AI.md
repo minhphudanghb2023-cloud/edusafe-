@@ -2,7 +2,7 @@
 (Phần "thí nghiệm" cho báo cáo — SỐ THẬT, KHÔNG BỊA!)
 
 - **Ngày:** ......../11/2026 · **Người kiểm thử:** Minh PHú 
-- **Chạy:** `run.bat` → `http://127.0.0.1:3000`
+- **Chạy:** `run.bat` → `http://127.0.0.1:3000` **hoặc** `https://edusafe-ai.onrender.com`
 - **Tài khoản:** dùng tài khoản MỚI (chưa có nhật ký cảm xúc)
   *(lý do: eff = max(điểm từ chữ, 100 - trung bình nhật ký); tài khoản mới thì "sàn" = 15)*
 
@@ -53,22 +53,20 @@
 
 ---
 
-## PHẦN C — LỖI TÀI KHOẢN / API (5 mục)
+## PHẦN C — LỖI TÀI KHOẢN / API (3 mục)
 
 | # | Thao tác | Mã lỗi dự kiến | Thực tế | ✓/✗ |
 |---|---------|----------------|---------|-----|
 | 1 | Đăng ký thiếu email | 400 "Thiếu thông tin bắt buộc" | | |
 | 2 | Đăng ký username đã có | 400 "Username đã tồn tại" | | |
 | 3 | Đăng nhập sai mật khẩu | 401 "Sai tài khoản hoặc mật khẩu" | | |
-| 4 | Đăng nhập tài khoản đã bị admin khóa | 403 "Tài khoản đã bị khóa" | | |
-| 5 | Gọi GET `/api/users` bằng token HỌC SINH | 403 (thiếu `user:read`) | | |
 
 ---
 
 ## BẢNG TỔNG HỢP (điền sau khi làm xong)
 
-- Phần A: **....../13** khớp · Phần B: **....../6** · Phần C: **....../5**
-- **Tỷ lệ chính xác = .......%** ← SỐ THẬT đưa thẳng vào báo cáo!
+- Phần A: **....../13** khớp · Phần B: **....../6** · Phần C: **....../3**
+- **Tổng = ......./22 · Tỷ lệ chính xác = .......%** ← SỐ THẬT đưa thẳng vào báo cáo!
 - **Phát hiện mới** (từ khóa nào app KHÔNG bắt được?):
 
 ........................................................................

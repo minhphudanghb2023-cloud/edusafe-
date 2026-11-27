@@ -535,20 +535,7 @@ def delete_old_mood_logs(user_id, days=30):
     return deleted1
 
 
-def delete_all_mood_logs(user_id):
-    """Xóa TOÀN BỘ nhật ký tâm trạng của user"""
-    conn = get_db()
-    c = conn.cursor()
-    c.execute("DELETE FROM mood_logs WHERE user_id=?", (user_id,))
-    deleted = c.rowcount
-    try:
-        c.execute("DELETE FROM mood_logs_archive WHERE user_id=?", (user_id,))
-        deleted += c.rowcount
-    except Exception:
-        pass
-    conn.commit()
-    conn.close()
-    return deleted
+
 
 
 def get_mood_logs(user_id=None, limit=30):

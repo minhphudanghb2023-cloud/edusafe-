@@ -673,19 +673,7 @@ def api_delete_old_moods():
     return jsonify({"success": True, "deleted": deleted, "days": days})
 
 
-@app.route("/api/mood/delete-all", methods=["POST"])
-@require_auth
-def api_delete_all_moods():
-    """Xóa toàn bộ nhật ký"""
-    user_id = int(g.current_user["sub"])
-    # Backup truoc khi xoa toan bo
-    try:
-        import backup as backup_module
-        backup_module.backup_database(backup_type="pre_delete_all")
-    except Exception:
-        pass
-    deleted = db.delete_all_mood_logs(user_id)
-    return jsonify({"success": True, "deleted": deleted})
+
 
 
 @app.route("/api/mood/all", methods=["GET"])
