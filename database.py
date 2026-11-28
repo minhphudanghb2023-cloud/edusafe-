@@ -223,9 +223,9 @@ def _seed_data(c):
             ("admin", "admin@edusafe.vn", hash_password("admin123"), "Quản trị viên", "admin", "0123456789", "", None, "ADMIN01"),
             ("gv001", "gv001@edusafe.vn", hash_password("123456"), "Nguyễn Văn Giáo", "teacher", "0987654321", "8A", None, "GV001"),
             ("gv002", "gv002@edusafe.vn", hash_password("123456"), "Trần Thị Dạy", "teacher", "0111222333", "8B", None, "GV002"),
-            ("hs001", "hs001@edusafe.vn", hash_password("123456"), "Nguyễn Minh Anh", "student", "0900000001", "8A", None, "HS001"),
-            ("hs002", "hs002@edusafe.vn", hash_password("123456"), "Lê Văn Bình", "student", "0900000002", "8A", None, "HS002"),
-            ("hs003", "hs003@edusafe.vn", hash_password("123456"), "Phạm Thị Cẩm", "student", "0900000003", "8B", None, "HS003"),
+            
+            
+            
             ("hs004", "hs004@edusafe.vn", hash_password("123456"), "Hoàng Văn Dũng", "student", "0900000004", "8B", None, "HS004"),
             ("ph001", "ph001@edusafe.vn", hash_password("123456"), "Nguyễn Văn Phụ", "parent", "0911111111", "", None, "PH001"),
             ("ph002", "ph002@edusafe.vn", hash_password("123456"), "Lê Thị Hồng", "parent", "0922222222", "", None, "PH002"),
@@ -233,38 +233,10 @@ def _seed_data(c):
         c.executemany("INSERT INTO users (username, email, password_hash, full_name, role, phone, class_name, parent_id, student_code, created_at) VALUES (?,?,?,?,?,?,?,?,?,?)",
                       [(u[0], u[1], u[2], u[3], u[4], u[5], u[6], u[7], u[8], now_hanoi().strftime("%Y-%m-%d %H:%M:%S")) for u in users])
 
-        c.execute("UPDATE users SET parent_id = (SELECT id FROM users WHERE username='ph001') WHERE username='hs001'")
-        c.execute("UPDATE users SET parent_id = (SELECT id FROM users WHERE username='ph002') WHERE username='hs003'")
+        
+        
 
-        moods = [
-            (4, "vui", "😊", "Vui vẻ", "Hôm nay rất vui, học bài tốt", 90, "low"),
-            (4, "binhthuong", "😐", "Bình thường", "Bình thường, không có gì đặc biệt", 85, "low"),
-            (4, "buon", "😢", "Buồn bã", "Bị bạn trong lớp trêu chọc", 55, "medium"),
-            (4, "loangiang", "😰", "Lo lắng", "Sợ đi học, sợ gặp bạn ấy", 45, "high"),
-            (4, "tucgian", "😡", "Tức giận", "Bị đánh đập ở sân trường", 35, "high"),
-            (5, "vui", "😊", "Vui vẻ", "Chơi với bạn thân, rất vui", 95, "low"),
-            (5, "binhthuong", "😐", "Bình thường", "Hoc bai bình thường", 80, "low"),
-        ]
-        for uid, mood, emoji, label, note, score, risk in moods:
-            c.execute("INSERT INTO mood_logs (user_id, mood, mood_emoji, mood_label, note, safety_score, risk_level, created_at) VALUES (?,?,?,?,?,?,?,?)", (uid, mood, emoji, label, note, score, risk, now_hanoi().strftime("%Y-%m-%d %H:%M:%S")))
 
-        reports = [
-            (4, "Nguyễn Minh Anh", "8A", "physical", "Bị bạn đánh ở sân trường vừa rồi", "Sân trường", "Lê Văn Bình", "high", "pending"),
-            (4, "Nguyễn Minh Anh", "8A", "verbal", "Bị bạn trêu chọc mỗi ngày", "Lớp học", "", "medium", "in_progress"),
-            (5, "Lê Văn Bình", "8A", "cyber", "Bị đăng ảnh chế lên nhóm lớp", "Online", "Nhiều bạn", "high", "pending"),
-        ]
-        for uid, name, cls, rtype, desc, loc, wit, sev, status in reports:
-            c.execute("INSERT INTO reports (user_id, student_name, class_name, report_type, description, location, witnesses, severity, status, created_at) VALUES (?,?,?,?,?,?,?,?,?,?)", (uid, name, cls, rtype, desc, loc, wit, sev, status, now_hanoi().strftime("%Y-%m-%d %H:%M:%S")))
-
-        alerts = [
-            (4, "Cảnh báo tâm lý", "Hoc sinh Nguyễn Minh Anh có dấu hiệu bất ổn", "critical", "teacher"),
-            (5, "Báo cáo bạo lực", "Có báo cáo về bạo lực thể chất tại sân trường", "warning", "teacher"),
-            (4, "Cảnh báo nguy cơ", "Hoc sinh có tiêu chí nguy cơ cao", "critical", "admin"),
-        ]
-        for uid, title, msg, sev, target in alerts:
-            c.execute("INSERT INTO alerts (user_id, title, message, severity, target_role, created_at) VALUES (?,?,?,?,?,?)", (uid, title, msg, sev, target, now_hanoi().strftime("%Y-%m-%d %H:%M:%S")))
-
-        c.execute("INSERT OR REPLACE INTO config (key, value) VALUES ('ai_sensitivity', 'high')")
 
 
 # ==================== USER ====================
