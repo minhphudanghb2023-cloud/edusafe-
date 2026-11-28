@@ -226,7 +226,7 @@ def _seed_data(c):
             
             
             
-            ("hs004", "hs004@edusafe.vn", hash_password("123456"), "Hoàng Văn Dũng", "student", "0900000004", "8B", None, "HS004"),
+           
             ("ph001", "ph001@edusafe.vn", hash_password("123456"), "Nguyễn Văn Phụ", "parent", "0911111111", "", None, "PH001"),
             ("ph002", "ph002@edusafe.vn", hash_password("123456"), "Lê Thị Hồng", "parent", "0922222222", "", None, "PH002"),
         ]
